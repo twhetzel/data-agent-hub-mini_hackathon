@@ -16,6 +16,7 @@ DEFAULTS = {
     "Mock Agent (8000)": "http://localhost:8000/agent",
     "Freestyle Stub (8001)": "http://localhost:8001/agent",
     "Local Freestyle Runner (8002)": "http://localhost:8002/agent",
+    "Hosted Freestyle (3000)": "http://localhost:3000/agent",
     "Custom…": "",
 }
 
