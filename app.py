@@ -44,6 +44,15 @@ if uploaded_file:
 
     with col2:
         st.subheader("🧭 Suggested Visualizations")
+    st.subheader("🗺️ Agent-Generated Charts")
+    specs = output.get("chart_specs", [])
+    if isinstance(specs, list) and specs:
+        for i, spec in enumerate(specs, 1):
+            st.caption(f"Chart {i}")
+            st.vega_lite_chart(spec, use_container_width=True)
+    else:
+        st.info("No chart specs returned by the agent (yet).")
+
         viz = output.get("suggested_visuals", [])
         if isinstance(viz, list):
             for v in viz:
