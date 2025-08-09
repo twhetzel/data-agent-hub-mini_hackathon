@@ -10,7 +10,27 @@ from utils.viz_utils import default_dashboard, detect_columns, chart_line_over_t
 st.set_page_config(page_title="Data Agent Hub — Mini", page_icon="🧠", layout="wide")
 st.title("🧠 Data Agent Hub — Mini")
 
-endpoint = os.getenv("FREESTYLE_ENDPOINT", "http://localhost:8000/agent")
+# --- Agent endpoint switcher (sidebar) ---
+import os
+DEFAULTS = {
+    "Mock Agent (8000)": "http://localhost:8000/agent",
+    "Freestyle Stub (8001)": "http://localhost:8001/agent",
+    "Local Freestyle Runner (8002)": "http://localhost:8002/agent",
+    "Custom…": "",
+}
+
+with st.sidebar:
+    st.header("Agent Backend")
+    choice = st.selectbox("Target", list(DEFAULTS.keys()), index=2)
+    if choice == "Custom…":
+        endpoint = st.text_input("Endpoint URL", os.getenv("FREESTYLE_ENDPOINT", "http://localhost:8002/agent"))
+    else:
+        endpoint = DEFAULTS[choice]
+    st.caption(f"Using: {endpoint}")
+
+
+
+# endpoint = os.getenv("FREESTYLE_ENDPOINT", "http://localhost:8000/agent")
 st.caption(f"Agent endpoint: {endpoint}")
 
 uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
