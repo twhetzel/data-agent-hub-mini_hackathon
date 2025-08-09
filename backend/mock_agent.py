@@ -29,7 +29,7 @@ def coerce_numeric(value: str):
             return None
         v = float(value)
         return v
-    except Exception:
+    except (ValueError, TypeError):
         return value
 
 def detect_columns(rows: List[dict]):
