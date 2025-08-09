@@ -4,3 +4,6 @@ requests
 fastapi
 uvicorn
 altair
+pyyaml
+python-dotenv
+openai

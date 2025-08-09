@@ -10,6 +10,27 @@ from utils.viz_utils import default_dashboard, detect_columns, chart_line_over_t
 st.set_page_config(page_title="Data Agent Hub — Mini", page_icon="🧠", layout="wide")
 st.title("🧠 Data Agent Hub — Mini")
 
+# --- Agent endpoint switcher (sidebar) ---
+import os
+DEFAULTS = {
+    "Mock Agent (8000)": "http://localhost:8000/agent",
+    "Freestyle Stub (8001)": "http://localhost:8001/agent",
+    "Custom…": "",
+}
+
+with st.sidebar:
+    st.header("Agent Backend")
+    choice = st.selectbox("Target", list(DEFAULTS.keys()), index=1)
+    if choice == "Custom…":
+        endpoint = st.text_input("Endpoint URL", os.getenv("FREESTYLE_ENDPOINT", "http://localhost:8001/agent"))
+    else:
+        endpoint = DEFAULTS[choice]
+    st.caption(f"Using: {endpoint}")
+
+# Replace any previous endpoint variable with this one:
+# endpoint = os.getenv("FREESTYLE_ENDPOINT", "http://localhost:8000/agent")
+
+
 endpoint = os.getenv("FREESTYLE_ENDPOINT", "http://localhost:8000/agent")
 st.caption(f"Agent endpoint: {endpoint}")
 
