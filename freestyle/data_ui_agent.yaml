@@ -1,0 +1,15 @@
+name: data-ui-agent
+description: Given a dataset schema and sample rows, summarize and suggest visuals.
+inputs:
+  - schema_description: string
+  - sample_rows: string
+tasks:
+  - summarize_data: >
+      Summarize what this dataset appears to contain, including likely entities, measures,
+      and potential questions an analyst might ask.
+  - suggest_visuals: >
+      Recommend 2–3 visualizations appropriate for this data. Choose from: line chart,
+      bar chart, histogram, scatter plot, map, box plot, heatmap. Explain why briefly.
+outputs:
+  - summary
+  - suggested_visuals
