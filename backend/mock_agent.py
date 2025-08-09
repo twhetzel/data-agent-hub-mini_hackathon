@@ -20,7 +20,7 @@ def parse_sample_rows(csv_text: str):
         reader = csv.DictReader(io.StringIO(csv_text))
         rows = list(reader)
         return rows
-    except Exception:
+    except csv.Exception:
         return []
 
 def coerce_numeric(value: str):
