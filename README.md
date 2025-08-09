@@ -29,3 +29,7 @@ Set the endpoint:
 export FREESTYLE_ENDPOINT="https://your-agent/agent"
 ```
 
+
+## Agent-generated charts (Vega-Lite / Altair specs)
+- The mock agent now returns `chart_specs` (Vega-Lite JSON). The UI renders them via `st.vega_lite_chart`.
+- When you swap in a real Freestyle agent, have it return the same `chart_specs` structure.
