@@ -56,7 +56,7 @@ def detect_columns(rows: List[dict]):
         try:
             float(val)
             numeric_cols.append(col)
-        except Exception:
+        except (ValueError, TypeError):
             categorical_cols.append(col)
     return numeric_cols, categorical_cols, time_cols
 
