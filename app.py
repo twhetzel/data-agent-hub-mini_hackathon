@@ -15,23 +15,22 @@ import os
 DEFAULTS = {
     "Mock Agent (8000)": "http://localhost:8000/agent",
     "Freestyle Stub (8001)": "http://localhost:8001/agent",
+    "Local Freestyle Runner (8002)": "http://localhost:8002/agent",
     "Custom…": "",
 }
 
 with st.sidebar:
     st.header("Agent Backend")
-    choice = st.selectbox("Target", list(DEFAULTS.keys()), index=1)
+    choice = st.selectbox("Target", list(DEFAULTS.keys()), index=2)
     if choice == "Custom…":
-        endpoint = st.text_input("Endpoint URL", os.getenv("FREESTYLE_ENDPOINT", "http://localhost:8001/agent"))
+        endpoint = st.text_input("Endpoint URL", os.getenv("FREESTYLE_ENDPOINT", "http://localhost:8002/agent"))
     else:
         endpoint = DEFAULTS[choice]
     st.caption(f"Using: {endpoint}")
 
-# Replace any previous endpoint variable with this one:
+
+
 # endpoint = os.getenv("FREESTYLE_ENDPOINT", "http://localhost:8000/agent")
-
-
-endpoint = os.getenv("FREESTYLE_ENDPOINT", "http://localhost:8000/agent")
 st.caption(f"Agent endpoint: {endpoint}")
 
 uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
